@@ -1,14 +1,19 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.all  # すべてのレコードを@postsに代入
+    @posts = Post.all.order(id: "DESC")
   end
 
-  def new
-  end
+  def checked
+    post = Post.find(params[:id])
+    if post.checked then
+      post.update(checked: false)
+    else
+      post.update(checked: true)
+    end
 
-  def create
-    Post.create(content: params[:content])
+    item = Post.find(params[:id])
+    render json: { post: item }
   end
 
 end

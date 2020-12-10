@@ -21,4 +21,7 @@ class PostsController < ApplicationController
     render json: { post: item }
   end
 
+  def sample
+  end
+
 end
